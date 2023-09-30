@@ -1,0 +1,16 @@
+describe('register', () => {
+  it('register test', () => {
+    cy.visit('http://localhost:3000/')
+    cy.url().should('include', '/')
+    cy.get('[data-test="registerLink"]').contains("Don't have an account? Sign Up").click({force:true})
+    cy.url().should('include', '/register')
+    cy.get('[data-test="registerHeader"]').contains("Register").should('be.visible')
+    cy.get('[data-test="userName"]').should('be.visible').type("ready2")
+    cy.get('[data-test="firstName"]').should('be.visible').type("Ready2")
+    cy.get('[data-test="lastName"]').should('be.visible').type("Misin2")
+    cy.get('[data-test="email"]').should('be.visible').type("ready2@ready.com")
+    cy.get('[data-test="password"]').should('be.visible').type("Ready.123")
+    cy.get('[data-test="password2"]').should('be.visible').type("Ready.123")
+    cy.get('[data-test="submitRegister"]').should('be.visible').click({force:true})
+  })
+})
